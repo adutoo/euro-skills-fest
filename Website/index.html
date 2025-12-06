@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Euro Skill Fest Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="page-main">
+  <!-- separate bulb + rocket decorations -->
+  <div class="decor decor-bulb">
+    <img src="images/bulb.png" alt="Bulb icon" />
+  </div>
+  <div class="decor decor-rocket">
+    <img src="images/rocket.png" alt="Rocket" />
+  </div>
+
+  <header class="top-bar">
+    <div class="logo-wrap">
+      <img src="images/logo.png" alt="EURO International School" class="logo-img" />
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- FIRST SCREEN -->
+    <section class="hero-block">
+      <section class="hero">
+        <p class="eyebrow">INTRODUCING</p>
+
+        <h1 class="hero-title">euro skill fest</h1>
+
+        <!-- 09 iitians / 09 clubs with split lines -->
+        <section class="metrics">
+          <div class="metrics-row metrics-row-top">
+            <span class="metrics-text-outline">09 iitians</span>
+            <span class="metrics-line"></span>
+          </div>
+          <div class="metrics-row metrics-row-bottom">
+            <span class="metrics-line"></span>
+            <span class="metrics-text-outline">09 clubs</span>
+          </div>
+        </section>
+      </section>
+
+      <section class="clubs">
+        <div class="club-pill">AI</div>
+        <div class="club-pill">ENTREPRENEURSHIP</div>
+        <div class="club-pill">CODING</div>
+        <div class="club-pill">ROBOTICS</div>
+        <div class="club-pill">DRONE TECH</div>
+        <div class="club-pill">CAR ENGINEERING</div>
+        <div class="club-pill">SPACE TECH</div>
+        <div class="club-pill">PHOTOGRAPHY</div>
+        <div class="club-pill">FINANCE</div>
+      </section>
+
+      <section class="description">
+        <p>This winter, let your child explore beyond the textbooks, with IITians.</p>
+      </section>
+    </section>
+
+    <!-- SECOND SCREEN (after scroll) -->
+    <section class="form-section">
+      <p class="form-intro">Fill out the form to register ↓</p>
+
+      <form id="skillfest-form">
+        <!-- Name -->
+        <label class="field">
+          <span>Your Name*</span>
+          <input type="text" name="name" required placeholder="Your Name*" />
+        </label>
+
+        <!-- Child's Class (custom dropdown) -->
+        <label class="field">
+          <span>Child’s Class*</span>
+
+          <div class="custom-select-container" data-name="class">
+            <div class="select-trigger">
+              <span class="trigger-text">Child’s Class*</span>
+
+              <svg class="arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+
+            <div class="options-menu">
+              <div class="option" data-value="6">Grade 6</div>
+              <div class="option" data-value="7">Grade 7</div>
+              <div class="option" data-value="8">Grade 8</div>
+              <div class="option" data-value="9">Grade 9</div>
+              <div class="option" data-value="10">Grade 10</div>
+              <div class="option" data-value="11">Grade 11</div>
+              <div class="option" data-value="12">Grade 12</div>
+            </div>
+
+            <!-- value sent to Google Sheets -->
+            <input type="hidden" name="class" required>
+          </div>
+        </label>
+
+        <!-- Skill of Interest (custom dropdown) -->
+        <label class="field">
+          <span>Skill of Interest*</span>
+
+          <div class="custom-select-container" data-name="skill">
+            <div class="select-trigger">
+              <span class="trigger-text">Skill of Interest*</span>
+
+              <svg class="arrow" xmlns="http://www.w3.org/2000/svg" fill="none"
+                   viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+
+            <div class="options-menu">
+              <div class="option" data-value="AI">AI</div>
+              <div class="option" data-value="Entrepreneurship">Entrepreneurship</div>
+              <div class="option" data-value="Coding">Coding</div>
+              <div class="option" data-value="Robotics">Robotics</div>
+              <div class="option" data-value="Drone Tech">Drone Tech</div>
+              <div class="option" data-value="Car Engineering">Car Engineering</div>
+              <div class="option" data-value="Space Tech">Space Tech</div>
+              <div class="option" data-value="Photography">Photography</div>
+              <div class="option" data-value="Finance">Finance</div>
+            </div>
+
+            <!-- value sent to Google Sheets -->
+            <input type="hidden" name="skill" required>
+          </div>
+        </label>
+
+        <!-- Phone -->
+        <label class="field">
+          <span>Phone Number*</span>
+          <input type="tel" name="phone" required placeholder="Phone Number*" />
+        </label>
+
+        <button type="submit" class="submit-btn">SUBMIT</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // ---------- CUSTOM DROPDOWNS (for Class & Skill) ----------
+    const selectContainers = document.querySelectorAll('.custom-select-container');
+
+    selectContainers.forEach(container => {
+      const trigger = container.querySelector('.select-trigger');
+      const triggerText = container.querySelector('.trigger-text');
+      const options = container.querySelectorAll('.option');
+      const hiddenInput = container.querySelector('input[type="hidden"]');
+
+      // Toggle open/close
+      trigger.addEventListener('click', () => {
+        container.classList.toggle('open');
+      });
+
+      // Option selected
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          options.forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+
+          triggerText.textContent = option.textContent;
+          hiddenInput.value = option.getAttribute('data-value');
+
+          container.classList.remove('open');
+        });
+      });
+    });
+
+    // Close any open dropdown if clicking outside
+    document.addEventListener('click', (e) => {
+      selectContainers.forEach(container => {
+        if (!container.contains(e.target)) {
+          container.classList.remove('open');
+        }
+      });
+    });
+
+    // ---------- FORM SUBMIT TO GOOGLE APPS SCRIPT ----------
+    // 🔴 Replace this with YOUR Apps Script Web App URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_URL_HERE/exec";
+
+    const form = document.getElementById("skillfest-form");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const classInput = form.querySelector('input[name="class"]');
+      const skillInput = form.querySelector('input[name="skill"]');
+      if (!classInput.value || !skillInput.value) {
+        alert("Please select Child’s Class and Skill of Interest.");
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData
+      }).then(() => {
+        window.location.href = "thankyou.html";
+      }).catch((error) => {
+        console.error("Error!", error);
+        alert("Something went wrong. Please try again.");
+      });
+    });
+  </script>
+</body>
+</html>
