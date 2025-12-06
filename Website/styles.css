@@ -154,9 +154,11 @@ body {
 @media (min-width: 900px) {
   .main-content {
     margin-left: 4rem;
+    max-width: 48rem;          /* wider so skills fit in 2 lines */
   }
-  .top-bar {
-    padding-left: 4rem;
+  .description,
+  .clubs {
+    max-width: 48rem;
   }
 }
 
@@ -184,7 +186,7 @@ body {
 }
 
 .hero-title {
-  font-size: 4rem;
+  font-size: 4rem;           /* base (mobile / tablet) */
   text-transform: lowercase;
   margin: 0;
   line-height: 0.98;
@@ -193,8 +195,8 @@ body {
   text-shadow:
     -2px -2px var(--outline-dark),
      2px -2px var(--outline-dark),
-    -2px  2px var(--outline-dark),
      2px  2px var(--outline-dark),
+    -2px  2px var(--outline-dark),
      0px  3px rgba(0, 0, 0, 0.35);
 }
 
@@ -228,8 +230,8 @@ body {
   text-shadow:
     -2px -2px var(--outline-dark),
      2px -2px var(--outline-dark),
-    -2px  2px var(--outline-dark),
      2px  2px var(--outline-dark),
+    -2px  2px var(--outline-dark),
      0px  3px rgba(0, 0, 0, 0.35);
 }
 
@@ -270,7 +272,7 @@ body {
   font-weight: 500;
 }
 
-/* mobile chips – keep look similar to design */
+/* mobile chips */
 @media (max-width: 600px) {
   .clubs {
     justify-content: flex-start;
@@ -302,7 +304,7 @@ body {
 .form-section {
   margin-top: 0.1rem;
   max-width: 32rem;
-  padding-bottom: 2.5rem;   /* reduced from 5rem */
+  padding-bottom: 2.5rem;
 }
 
 .form-intro {
@@ -496,6 +498,11 @@ body {
   flex-direction: column;
 }
 
+/* hide rocket on thankyou page */
+.page-thankyou .decor-rocket {
+  display: none;
+}
+
 .thankyou-content {
   position: relative;
   z-index: 2;
@@ -510,10 +517,8 @@ body {
   }
 }
 
-/* bigger thank you text */
-
 .thankyou-title {
-  font-size: 4.2rem;      /* bigger */
+  font-size: 4.2rem;      /* base */
   text-transform: lowercase;
   font-weight: 900;
   color: var(--text-main);
@@ -521,13 +526,13 @@ body {
   text-shadow:
     -2px -2px var(--outline-dark),
      2px -2px var(--outline-dark),
-    -2px  2px var(--outline-dark),
      2px  2px var(--outline-dark),
+    -2px  2px var(--outline-dark),
      0px  3px rgba(0, 0, 0, 0.35);
 }
 
 .thankyou-text {
-  font-size: 1.1rem;      /* bigger paragraph */
+  font-size: 1.1rem;
   max-width: 30rem;
 }
 
@@ -540,8 +545,67 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 
-/* -------- SMALL SCREENS -------- */
+/* -------- RESPONSIVE OVERRIDES -------- */
 
+/* Desktop-only tweaks */
+@media (min-width: 900px) {
+  /* euro skill fest 2x size */
+  .hero-title {
+    font-size: 8rem;
+  }
+
+  /* remove gap between INTRODUCING and title */
+  .eyebrow {
+    margin-bottom: 0;
+  }
+
+  /* 09 iitians ---- 09 clubs in one line, no line before clubs */
+  .metrics {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .metrics-row-top,
+  .metrics-row-bottom {
+    margin: 0;
+  }
+
+  .metrics-row-top .metrics-line {
+    flex: 1;               /* long line between the texts */
+  }
+
+  .metrics-row-bottom .metrics-line {
+    display: none;         /* no line in front of 09 clubs */
+  }
+
+  .metrics-row-bottom {
+    margin-left: 0.4rem;
+  }
+
+  /* skills area fits in 2 rows by giving more width (already wider above) */
+
+  /* This winter... on one line */
+  .description p {
+    white-space: nowrap;
+  }
+
+  /* Thank you text 2x */
+  .thankyou-title {
+    font-size: 8.4rem;     /* about 2x */
+  }
+
+  .thankyou-text {
+    font-size: 2.2rem;
+  }
+
+  /* bigger bulb on thankyou page only (2x) */
+  .page-thankyou .decor-bulb img {
+    width: 9.2rem;
+  }
+}
+
+/* small screens */
 @media (max-width: 600px) {
   .main-content,
   .thankyou-content {
