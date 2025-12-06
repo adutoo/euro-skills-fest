@@ -74,6 +74,7 @@ body {
   right: 3.1rem;
 }
 
+/* base bulb size */
 .decor-bulb img {
   width: 4.6rem;
 }
@@ -87,12 +88,14 @@ body {
   height: 18.5rem;
 }
 
+/* PAGE ONE (main) bulb – 2x bigger */
+.page-main .decor-bulb img {
+  width: 9.2rem;
+}
+
 @media (min-width: 1200px) {
   .decor-bulb {
     right: 3.7rem;
-  }
-  .decor-bulb img {
-    width: 5.1rem;
   }
   .decor-rocket {
     bottom: -4.3rem;
@@ -101,6 +104,11 @@ body {
   .decor-rocket img {
     height: 20rem;
   }
+
+  /* a little extra on huge desktops */
+  .page-main .decor-bulb img {
+    width: 10.2rem;
+  }
 }
 
 @media (max-width: 600px) {
@@ -108,15 +116,17 @@ body {
     top: 0;
     right: 1.1rem;
   }
-  .decor-bulb img {
-    width: 3rem;
-  }
   .decor-rocket {
     bottom: -2rem;
     right: -1.2rem;
   }
   .decor-rocket img {
     height: 10rem;
+  }
+
+  /* mobile bulb also ~2x (from 3rem → 6rem) */
+  .page-main .decor-bulb img {
+    width: 6rem;
   }
 }
 
@@ -183,12 +193,14 @@ body {
   margin-top: 1rem;
 }
 
+/* INTRODUCING – overlay / almost touching heading */
 .eyebrow {
   letter-spacing: 0.3em;
   text-transform: uppercase;
   font-size: 0.85rem;
   color: #ffda52;
-  margin: 0 0 0.08rem;
+  display: inline-block;
+  margin: 0 0 -0.25rem;   /* negative bottom margin = overlaps heading slightly */
 }
 
 .hero-title {
@@ -540,10 +552,13 @@ body {
      0px  3px rgba(0, 0, 0, 0.35);
 }
 
+/* ensure query text is truly centered */
 .thankyou-text {
   font-size: 1.1rem;
-  max-width: 30rem;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
+  text-align: center;
 }
 
 .back-link {
@@ -622,9 +637,9 @@ body {
     white-space: nowrap;
   }
 
-  /* no gap between INTRODUCING and title */
+  /* bring INTRODUCING even closer on desktop */
   .eyebrow {
-    margin-bottom: 0;
+    margin-bottom: -0.35rem;
   }
 
   /* 09 iitians --- 09 clubs in one line with a shorter line between */
@@ -678,7 +693,7 @@ body {
     white-space: nowrap;
   }
 
-  /* Thank you text 2x, smaller paragraph, single line */
+  /* Thank you text 2x, single line */
   .thankyou-title {
     font-size: 8.4rem;
     white-space: nowrap;
