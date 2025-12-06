@@ -35,7 +35,7 @@
 
         <h1 class="hero-title">euro skill fest</h1>
 
-        <!-- 09 iitians / 09 clubs with split lines -->
+        <!-- 09 iitians / 09 clubs -->
         <section class="metrics">
           <div class="metrics-row metrics-row-top">
             <span class="metrics-text-outline">09 iitians</span>
@@ -147,6 +147,16 @@
     </section>
   </main>
 
+  <!-- Loading overlay / progress bar -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-box">
+      <div class="loading-text">Submitting your response…</div>
+      <div class="loading-bar">
+        <div class="loading-bar-inner"></div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ---------- CUSTOM DROPDOWNS (for Class & Skill) ----------
     const selectContainers = document.querySelectorAll('.custom-select-container');
@@ -186,10 +196,10 @@
     });
 
     // ---------- FORM SUBMIT TO GOOGLE APPS SCRIPT ----------
-    // 🔴 Replace this with YOUR Apps Script Web App URL
     const SCRIPT_URL = "https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_URL_HERE/exec";
 
     const form = document.getElementById("skillfest-form");
+    const loadingOverlay = document.getElementById("loading-overlay");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -203,14 +213,19 @@
 
       const formData = new FormData(form);
 
+      // show loading overlay
+      loadingOverlay.classList.add("visible");
+
       fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         body: formData
       }).then(() => {
+        // redirect after submit
         window.location.href = "thankyou.html";
       }).catch((error) => {
         console.error("Error!", error);
+        loadingOverlay.classList.remove("visible");
         alert("Something went wrong. Please try again.");
       });
     });
