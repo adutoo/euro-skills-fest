@@ -655,7 +655,7 @@ body {
   .metrics::before {
     content: "";
     order: 2;
-    flex: 0 0 11%;          /* much shorter line (~1/3 of previous 33%) */
+    flex: 0 0 11%;          /* short line on desktop */
     height: 0.09rem;
     background-color: #3742b2;
   }
@@ -706,5 +706,16 @@ body {
   .thankyou-title {
     font-size: 3.4rem;
     margin-top: 4.5rem;
+  }
+
+  /* EXTRA MOBILE TWEAKS:
+     more space between title and 09 iitians / 09 clubs,
+     and line extends out to the right edge */
+  .metrics {
+    margin-top: 0.9rem;      /* more space below "euro skill fest" */
+  }
+
+  .metrics-line {
+    flex: 1;                 /* line grows from text to page edge */
   }
 }
